@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+	<template
+		id        ="odoo_multi_channel_sale.assets_backend"
+		name      ="odoo_multi_channel_sale popup"
+		inherit_id="web.assets_backend"
+	>
+		<xpath expr="." position="inside">
+			<script
+				type="text/javascript"
+				src ="/odoo_multi_channel_sale/static/src/js/odoo_multi_channel_sale.js"
+			>
+			</script>
+		</xpath>
+	</template>
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.print_node</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="30"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside" >
+                    <div class="app_settings_block" data-string="Print_Node" string="Print Node" data-key="oct_print_node"> <!-- groups="stock.group_stock_manager" -->
+                        <h2>Print Node Settings</h2>
+                        <div class="row mt16 o_settings_container" name="print_node_setting_container">
+
+                            <div class="col-12 col-lg-6 o_setting_box" id="print_node_api_key"
+                                 title="Print Node API Key Settings">
+                                    <label for="print_node_api_key" string="API Key"/>
+                                    <div class="text-muted">
+                                        Print Node API key
+                                    </div>
+                                    <field name="print_node_api_key"/>
+                            </div>
+
+                            <div class="col-12 col-lg-6 o_setting_box" id="print_node_webhook_secret"
+                                 title="Print Node Webhook Secret Settings">
+
+                                <label for="webhook_secret" string="Webhook Secret"/>
+                                <div class="text-muted">
+                                    Webhook events secret
+                                </div>
+                                <field name="webhook_secret"/>
+                                <button type="object"
+                                        name="generate_new_secret"
+                                        string="Generate New Secret"
+                                        class="oe_highlight"/>
+                            </div>
+
+                            <div class="col-12 col-lg-6 o_setting_box" id="print_node_avoid_duplicity">
+                                    <label for="allow_print_in_dev" string="Avoid Print Duplicity"/>
+                                    <div class="text-muted">
+                                        Avoid print duplicity. Send idempotency key to Print Node API
+                                    </div>
+                                    <field name="avoid_print_duplicity"/>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="print_node_allow_dev">
+                                    <label for="allow_print_in_dev" string="Allow Print in Development Mode"/>
+                                    <div class="text-muted">
+                                        Allow print in development mode or staging
+                                    </div>
+                                    <field name="allow_print_in_dev"/>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="print_node_allow_dev">
+                                    <label for="allow_print_in_dev" string="Print Delivery Labels"/>
+                                    <div class="text-muted">
+                                        Print stock picking delivery labels from binary_field
+                                    </div>
+                                    <field name="print_delivery_labels"/>
+                            </div>
+                        </div>
+
+                        <h2>Printers</h2>
+                        <div class="row mt16 o_settings_container" name="print_node_printers_container">
+
+                            <div class="col-12 col-lg-12 o_setting_box" id="print_node_printer"
+                                 title="Print Node Printers">
+
+                                <button type="object"
+                                            name="action_update_printers"
+                                            string="Update Printers"
+                                            class="oe_link"/>
+                                <button type="object"
+                                            name="action_update_printers_status"
+                                            string="Update Printers Status"
+                                            class="oe_link"/>
+
+                                <field name="printer_ids" mode="tree,form">
+                                    <tree decoration-success="status=='available'" decoration-danger="status!='available'">
+                                        <field name="name"/>
+                                        <field name="model"/>
+                                        <field name="id_printer"/>
+                                        <field name="status"/>
+                                    </tree>
+                                    <form edit="0">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="name"/>
+                                                    <field name="model" readonly="1"/>
+                                                </group>
+                                                <group>
+                                                    <field name="status" readonly="1"/>
+                                                    <field name="status_message" readonly="1"/>
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page name="users" string="Users">
+                                                    <field name="user_ids" widget="many2many_tags"/>
+                                                </page>
+                                                <page name="carriers" string="Carriers">
+                                                    <field name="carrier_ids" widget="many2many_tags"/>
+                                                </page>
+                                                <page name="pn_jobs" string="Print Node Jobs">
+                                                     <field name="print_node_job_ids">
+                                                         <tree>
+                                                            <field name="name"/>
+                                                            <field name="job_id"/>
+                                                            <field name="status"/>
+                                                         </tree>
+                                                    </field>
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </div>
+
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

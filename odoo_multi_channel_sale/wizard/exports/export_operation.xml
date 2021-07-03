@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+	<data>
+		<record id="export_wizard_form" model="ir.ui.view">
+			<field name="name">export.operation.form</field>
+			<field name="model">export.operation</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Import">
+						<group>
+							<group>
+								<field name="operation" widget="radio"/>
+							</group>
+							<group>
+								<field name="channel_id" options="{'no_create_edit':True}"/>
+							</group>
+						</group>
+					<footer>
+						<button
+							string="Confirm Export"
+							type  ="object"
+							name  ="export_button"
+							class ="oe_highlight"
+							context="{
+								'active_model': active_model,
+								'active_ids'  : active_ids,
+								'operation'   : operation
+							}"
+						/>
+						<button string="Cancel" name="cancel" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

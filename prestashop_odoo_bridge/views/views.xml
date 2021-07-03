@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="prestashop_odoo_bridge.multi_channel_view_form" model="ir.ui.view">
+        <field name="name">multi.channel.sale.inherited</field>
+        <field name="model">multi.channel.sale</field>
+        <field name="inherit_id" ref="odoo_multi_channel_sale.multi_channel_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='import_buttons']" position="before">
+                <center><separator 
+                    string='Import From Prestashop' 
+                    attrs= "{'invisible':[('channel','!=', 'prestashop')]}"/>
+                </center>
+                <group
+                    col="5"
+                    attrs= "{'invisible':[('channel','!=', 'prestashop')]}">
+                        <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="prestashop_odoo_bridge.action_import_prestashop_categories"
+                        type="action"
+                        icon="fa-5x fa-sitemap"
+                        class="oe_highlight wk_operation_btn box"
+                        help="It will import all your Category on Odoo from Prestashop"
+                        aria-label="Import Categories"
+                        title="Import Categories">
+                        <span> Import Categories</span><span><i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+                    <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="prestashop_odoo_bridge.action_import_prestashop_products"
+                        type="action"
+                        class="oe_highlight wk_operation_btn box"
+                        icon="fa-5x fa-dropbox "
+                        help="It will import Product on Odoo from Prestashop"
+                        aria-label="Import Products"
+                        title="Import Products">
+                        <span> Import Product</span> <span> <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+                        <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="prestashop_odoo_bridge.action_import_prestashop_partners"
+                        type="action"
+                        icon="fa-5x  fa-user"
+                        class="oe_highlight wk_operation_btn box"
+                        help="It will import all your Customer on Odoo from Prestashop"
+                        aria-label="Import Customers"
+                        title="Import Customers">
+                        <span> Import Customer</span> <span> <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+                        <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="prestashop_odoo_bridge.action_import_prestashop_orders"
+                        type="action"
+                        class="oe_highlight wk_operation_btn box"
+                        icon="fa-5x fa-shopping-cart"
+                        aria-label="Import Orders"
+                        title="Import Orders"
+                        help="It will import new Order on Odoo from Prestashop">
+                        <span> Import Order</span> <span>&#032; <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+                </group>
+            </xpath>
+
+            <xpath expr="//group[@name='export_buttons']" position="before">
+                <center><separator string='Export To Prestashop' attrs= "{'invisible':[('channel','!=', 'prestashop')]}"/></center>
+
+                <group name="export_ps_buttons"
+                    col="4"
+                    attrs= "{'invisible':[('channel','!=', 'prestashop')]}">
+                        <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="export_prestashop_categories"
+                        type="object"
+                        icon="fa-5x  fa-sitemap "
+                        class="oe_highlight wk_operation_btn box"
+                        aria-label="Export Categories"
+                        title="Export Categories"
+                        help="It will export all your Category from Odoo to Prestashop">
+                        <span> Export Categories</span> <span> <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+                    <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="export_prestashop_products"
+                        type="object"
+                        class="oe_highlight wk_operation_btn box"
+                        icon="fa-5x fa-dropbox"
+                        aria-label="Export Products"
+                        title="Export Products"
+                        help="It will export Product from Odoo to Prestashop">
+                        <span> Export Product</span> <span> <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+                        <button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="export_prestashop_attribute"
+                        type="object"
+                        icon="fa-5x  fa-sliders"
+                        class="oe_highlight wk_operation_btn box"
+                        aria-label="Export Attributes"
+                        title="Export Attributes"
+                        help="It will export all your Attributes and its values to Prestashop">
+                        <span> Export Attributes And Values</span> <span> <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button>
+
+                    <!--<button
+                        attrs= "{'invisible':['!',('channel','!=', 'prestashop'),('state','!=','validate')]}"
+                        name="update_prestashop_products"
+                        type="object"
+                        class="oe_highlight wk_operation_btn box"
+                        icon="fa-5x fa-dropbox"
+                        help="It will update the products at prestashop">
+                        <span> Update Order</span> <span>&#032; <i class='fa fa-fw fa-cloud-download'/></span>
+                    </button> -->
+
+                </group>
+            </xpath>
+
+            <group name="credentials" position='inside'>
+                <group attrs= "{'invisible':[('channel','!=', 'prestashop')]}">
+                    <field
+                        name="prestashop_base_uri"  widget="url" placeholder="http://{prestashop-store-url}/api"
+                        attrs= "{'required':[('channel','==', 'prestashop')],'readonly':[('state','=', 'validate')]}"/>
+                    <field
+                        name="prestashop_api_key"
+                        password="True"
+                        attrs= "{'required':[('channel','==', 'prestashop')],'readonly':[('state','=', 'validate')]}"/>
+                    <field
+                        name="ps_language_id"
+                        attrs= "{'readonly':[('state','=', 'validate')]}"/>
+                    <span>
+                        <button name="refresh_list" string="Fetch PrestaShop Language" type="object" class="oe_highlight"/>
+                    </span>
+                </group>
+            </group>
+             <!-- <xpath expr="//group[@name='advanced_configuration']" position="inside">
+                    <group attrs= "{'invisible':[('channel','!=', 'prestashop')]}">
+                         <field name='prestashop_config_id'
+                            context="{
+                                'wk_channel_id': id,
+                                'wk_channel':active_id
+                            }"
+                         attrs= "{'required':[('channel','==', 'prestashop')],'readonly':[('state','=', 'validate')]}"/>
+                    </group>
+            </xpath> -->
+            <xpath expr="//page[@name = 'configuration']" position="after">
+              <page string="Prestashop" name= 'prestashop'
+                attrs= "{'invisible':[('channel','!=', 'prestashop')]}">
+                <group  string="Cron Settings">
+                    <group>
+                        <group>
+                            <field name='ps_imp_products_cron'/>
+                            <field name='ps_imp_orders_cron'/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name='ps_imp_categories_cron'/>
+                            <field name='ps_imp_partners_cron'/>
+                        </group>
+                    </group>
+                </group>
+
+                <group string="Default Settings">
+                    <group>
+                        <!-- <field name='default_product_set_id'/> -->
+                        <field name='ps_default_tax_rule_id' attrs="{'readonly':[('state','=', 'validate')]}"/>
+                        <!-- <field name='default_product_visibility'/> -->
+                        <field name='ps_default_product_type'/>
+                    </group>
+                    <group>
+                        <field name='default_tax_type' attrs="{'readonly':[('state','=', 'validate')]}"/>
+                    </group>
+                </group>
+              </page>
+            </xpath>
+        </field>
+        </record>
+    </data>
+</odoo>

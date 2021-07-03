@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+<odoo>
+    <data>
+         <record id="import_prestashop_partners_form" model="ir.ui.view">
+            <field name="name">import.prestashop.partners.form</field>
+            <field name="model">import.prestashop.partners</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Prestashop Partners">
+                    <sheet>
+                        <group  invisible="context.get('active_model')=='multi.channel.sale'">
+                            <group  string='Prestashop Channel' >
+                                <field 
+                                name='channel_id' 
+                                widget='selection'
+                                readonly="1"
+                                />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name='operation'  widget='radio'/>
+                                <field name='ps_import_update_date' required='1'/>
+                                <field name='api_record_limit' required='1'/>
+                                <!-- <field name='source'/> -->
+                                <!-- <field
+                                name="group_id"
+                                attrs="{
+                                'invisible':[('source','!=','all')]
+                                }"/>
+                                <field
+                                name="partner_ids"
+                                placeholder="1,2"
+                                attrs="{
+                                'invisible':[('source','==','all')],
+                                'required':[('source','!=','all')]
+                                }"/> -->
+                            </group>
+                            <group>
+                                <div>
+                                    <p><b>NOTE</b></p>
+                                    <p attrs="{
+                                    'invisible':[('operation','!=','import')],
+                                    }">Import/Update partner in odoo
+                                    which are created at Prestashop after given date.</p>
+                                    <p  attrs="{
+                                    'invisible':[('operation','!=','update')],
+                                    }">Update imported partner in Odoo
+                                    which are updated at Prestashop after given date.</p>
+                                    <i class="fa fa-hand-o-left fa-2x"></i>
+                                    <!-- <p> You can also Import/Update Partner</p>
+                                        <ul>
+                                            <li>By Prestashop Partner ID(S) .</li>
+                                            <li>By  Prestashop Type Group like:<br/> General ,Wholesale ,Retailer etc.</li>
+                                        </ul>
+                                    <p></p>
+                                    <p></p> -->
+                                </div>
+                            </group>
+                        </group>
+                    </sheet>
+                    <separator colspan="6"/>
+                    <footer>
+                        <button name="import_now" string="Import Now" type="object" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+         <record id="import_prestashop_products_form" model="ir.ui.view">
+            <field name="name">import.prestashop.products.form</field>
+            <field name="model">import.prestashop.products</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Prestashop Products">
+                    <sheet>
+
+                            <group>
+                                <group>
+                                    <field name='operation' widget='radio'/>
+                                    <!-- <field name='prestashop_type' required='1'/> -->
+                                    <field name='channel_id' invisible='1'/>
+                                    <!-- <field name='update_product_date'
+                                      attrs="{
+                                      'invisible':[('operation','!=','update')],
+                                      'required':[('operation','==','update')]
+                                      }"/> -->
+                                    <field name='ps_import_update_date' required='1'/>
+                                    <field name='api_record_limit' required='1'/>
+                                </group>
+                                <group>
+                                    <div>
+                                        <p><b>NOTE</b>:</p>
+                                        <p attrs="{
+                                        'invisible':[('operation','!=','import')],
+                                        }">Import product in odoo
+                                        which are created at Prestashop after last given date.</p>
+                                        <p  attrs="{
+                                        'invisible':[('operation','!=','update')],
+                                        }">Update imported product in Odoo
+                                        which are updated at Prestashop after last given date.</p>
+                                        <p></p>
+                                        <i class="fa fa-hand-o-left fa-2x"></i>
+                                    </div>
+                                </group>
+                            </group>
+                    </sheet>
+                    <separator colspan="6"/>
+                    <footer>
+                        <button name="import_now" string="Import Now" type="object" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="import_prestashop_orders_form" model="ir.ui.view">
+            <field name="name">import.prestashop.orders.form</field>
+            <field name="model">import.prestashop.orders</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Prestashop Orders">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name='operation' widget='radio'/>
+                                <field name='channel_id' invisible='1'/>
+                                <field name='ps_import_update_date' required= '1'/>
+                                <field name='api_record_limit' required='1'/>
+                            </group>
+                            <group>
+                                <div>
+                                    <p><b>NOTE</b>:</p>
+                                    <p attrs="{
+                                        'invisible':[('operation','!=','import')],
+                                        }">Import order in odoo
+                                    which are create at Prestashop after last given date.</p>
+                                    <p  attrs="{
+                                        'invisible':[('operation','!=','update')],
+                                        }">Update imported  order in Odoo
+                                    which are updated at Prestashop after last given date.</p>
+                                    <p></p>
+                                    <i class="fa fa-hand-o-left fa-2x"></i>
+                                </div>
+                            </group>
+                        </group>
+                    </sheet>
+                    <separator colspan="6"/>
+                    <footer>
+                        <button name="import_now" string="Import Now" type="object" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="import_prestashop_categories_form" model="ir.ui.view">
+            <field name="name">import.prestashop.categories.form</field>
+            <field name="model">import.prestashop.categories</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Prestashop Categories">
+                    <sheet>
+                        <group  invisible="context.get('active_model')=='multi.channel.sale'">
+                            <group  string='Prestashop Channel' >
+                                <field 
+                                name='channel_id' 
+                                widget='selection'
+                                readonly="1"
+                                />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name='operation' widget='radio'/>
+                                <!-- <field name='source'/>
+                                <field
+                                name="parent_categ_id"
+                                attrs="{
+                                'invisible':[('source','==','all')],
+                                'required':[('source','!=','all')]
+                                }"/> -->
+                            </group>
+                            <!-- <group>
+                                <div>
+                                    <p><b>NOTE</b></p>
+                                    <p> You can also Import/Update Category </p>
+                                    <ul>
+                                        <li>By Prestashop Parent Category ID .</li>
+                                    </ul>
+                                    <p> In case of parent category id filter<br/> only corresponding child will imported. </p>
+                                </div>
+                            </group> -->
+                        </group>
+                    </sheet>
+                    <separator colspan="6"/>
+                    <footer>
+                        <button name="import_now" string="Import Now" type="object" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_prestashop_partners" model="ir.actions.act_window">
+            <field name="name">Import Prestashop Partners</field>
+            <field name="res_model">import.prestashop.partners</field>
+
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record id="action_import_prestashop_products" model="ir.actions.act_window">
+            <field name="name">Import Prestashop Products</field>
+            <field name="res_model">import.prestashop.products</field>
+
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record id="action_import_prestashop_orders" model="ir.actions.act_window">
+            <field name="name">Import Prestashop Orders</field>
+            <field name="res_model">import.prestashop.orders</field>
+
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record id="action_import_prestashop_categories" model="ir.actions.act_window">
+            <field name="name">Import Prestashop Categories</field>
+            <field name="res_model">import.prestashop.categories</field>
+
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

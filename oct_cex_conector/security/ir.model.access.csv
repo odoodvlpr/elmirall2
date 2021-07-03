@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_oct_cex_conector_oct_cex_conector,oct_cex_conector.oct_cex_conector,model_oct_cex_conector_oct_cex_conector,base.group_user,1,1,1,1
