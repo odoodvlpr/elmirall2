@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <record id="printing_server_print_node" model="printing.server">
+        <field name="name">Print Node</field>
+        <field name="address">https://api.printnode.com</field>
+    </record>
+
+</odoo>
