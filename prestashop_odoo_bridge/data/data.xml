@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='1'>
+
+         <!-- <record forcecreate='True' model="prestashop.config" id="prestashop_config">
+            <field name="name">Configuration</field>
+        </record> -->
+         <!--<record model="crm.team" id="team_sales_prestashop">
+            <field name="name">Prestashop Sales</field>
+            <field name="member_ids" eval="[(4, ref('base.user_root'))]"/>
+        </record>-->
+    	<record forcecreate='True'  model="multi.channel.sale" id="prestashop_channel" >
+            <field name="name">prestashop</field>
+            <field name="channel">prestashop</field>
+            <!--<field name="discount_product_id" ref='odoo_multi_channel_sale.discount_product'/>
+            <field name="sku_sequence_id" ref='odoo_multi_channel_sale.product_sequence_id'/>-->
+            <field name="prestashop_api_key">prestashop_api_key</field>
+            <field name="prestashop_base_uri">http://Your_prestashop_url/api</field>
+             <!--<field name="crm_team_id"
+                ref='team_sales_prestashop'/>-->
+            <!-- <field name="prestashop_config_id" ref='prestashop_config'/> -->
+        </record>
+
+        <record id="ps_awaiting_order_states" forcecreate='True' model="channel.order.states">
+            <field name="channel_id" ref="prestashop_odoo_bridge.prestashop_channel"/>
+            <field name="channel_state">1</field>
+            <field name="default_order_state">True</field>
+            <field name="odoo_order_state">draft</field>
+        </record>
+
+        <record id="ps_paid_order_states" forcecreate='True' model="channel.order.states">
+            <field name="channel_id" ref="prestashop_odoo_bridge.prestashop_channel"/>
+             <field name="channel_state">2</field>
+            <field name="odoo_order_state">sale</field>
+            <field name="odoo_create_invoice">True</field>
+            <field name="odoo_set_invoice_state">paid</field>
+            <field name="odoo_ship_order">True</field>
+        </record>
+
+        <record id="ps_shipped_order_states" forcecreate='True' model="channel.order.states">
+            <field name="channel_id" ref="prestashop_odoo_bridge.prestashop_channel"/>
+             <field name="channel_state">4</field>
+            <field name="odoo_order_state">shipped</field>
+            <field name="odoo_ship_order">True</field>
+        </record>
+
+        <record id="ps_canceled_order_states" forcecreate='True' model="channel.order.states">
+            <field name="channel_id" ref="prestashop_odoo_bridge.prestashop_channel"/>
+            <field name="channel_state">6</field>
+            <field name="odoo_order_state">cancelled</field>
+        </record>
+
+        <record id="ps_done_order_states" forcecreate='True' model="channel.order.states">
+           <field name="channel_id" ref="prestashop_odoo_bridge.prestashop_channel"/>
+           <field name="channel_state">5</field>
+           <field name="odoo_order_state">shipped</field>
+           <field name="odoo_ship_order">True</field>
+       </record>
+
+       <!--<record id="action_ps_mc" model="ir.actions.act_url">
+            <field name="name">Prestashop MultiChannel Bridge</field>
+            <field name="url">/</field>
+            <field name="target">self</field>
+        </record>
+
+       <record id="menu_ps_multichannel" model="ir.ui.menu">
+            <field name="name">Prestashop MultiChannel Bridge</field>
+            <field name="sequence" eval="200"/>
+            <field name="web_icon">prestashop_odoo_bridge,static/description/icon.png</field>
+            <field name="action" ref="action_ps_mc"/>
+        </record>
+
+        <record id="base.open_menu" model="ir.actions.todo">
+            <field name="action_id" ref="action_ps_mc"/>
+            <field name="state">open</field>
+        </record>-->
+
+    </data>
+</odoo>

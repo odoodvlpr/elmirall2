@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+user_odoo_bridge_categorie,prestashop_categories,model_import_prestashop_categories,,1,1,1,0
+user_odoo_bridge_products,prestashop_product,model_import_prestashop_products,,1,1,1,0
+user_odoo_bridge_partners,prestashop_partners,model_import_prestashop_partners,,1,1,1,0
+user_odoo_bridge_orders,prestashop_orders,model_import_prestashop_orders,,1,1,1,0
+
+user_odoo_bridge_exp_categories,prestashop_exp_categories,model_export_prestashop_categories,,1,1,1,0
+user_odoo_bridge_exp_products,prestashop_exp_products,model_export_templates,,1,1,1,0

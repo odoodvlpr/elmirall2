@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="cron_import_categories_from_prestashop" forcecreate='True' model="ir.cron">
+			<field name="name">prestashop - Import Categories</field>
+			<field eval="False" name="active"/>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="interval_number">12</field>
+			<field name="interval_type">hours</field>
+			<field name="numbercall">-1</field>
+
+			<field name="model_id" ref="model_import_prestashop_categories"/>
+			<field name="state">code</field>
+			<field name="code">model._cron_prestashop_import_categories()</field>
+			<!-- <field eval="'_cron_prestashop_import_categories'" name="function"/>
+			<field eval="'()'" name="args"/> -->
+		</record>
+		<record id="cron_import_partners_from_prestashop" forcecreate='True' model="ir.cron">
+			<field name="name">prestashop - Import Partner</field>
+			<field eval="False" name="active"/>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="interval_number">12</field>
+			<field name="interval_type">hours</field>
+			<field name="numbercall">-1</field>
+
+			<field name="model_id" ref="model_import_prestashop_partners"/>
+			<field name="state">code</field>
+			<field name="code">model._cron_prestashop_import_partners()</field>
+			<!-- <field eval="'_cron_prestashop_import_partners'" name="function"/> -->
+			<!-- <field eval="'()'" name="args"/> -->
+		</record>
+
+		<record id="cron_import_products_from_prestashop" forcecreate='True' model="ir.cron">
+			<field name="name">prestashop - Import Product</field>
+			<field eval="False" name="active"/>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="interval_number">12</field>
+			<field name="interval_type">hours</field>
+			<field name="numbercall">-1</field>
+
+			<field name="model_id" ref="model_import_prestashop_products"/>
+			<field name="state">code</field>
+			<field name="code">model._cron_prestashop_import_products()</field>
+			<!-- <field eval="'_cron_prestashop_import_products'" name="function"/> -->
+			<!-- <field eval="'()'" name="args"/> -->
+		</record>
+		<record id="cron_import_orders_from_prestashop" forcecreate='True' model="ir.cron">
+			<field name="name">prestashop - Import Order</field>
+			<field eval="False" name="active"/>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="interval_number">12</field>
+			<field name="interval_type">hours</field>
+			<field name="numbercall">-1</field>
+
+			<field name="model_id" ref="model_import_prestashop_orders"/>
+			<field name="state">code</field>
+			<field name="code">model._cron_prestashop_import_orders()</field>
+			<!-- <field eval="'_cron_prestashop_import_orders'" name="function"/> -->
+			<!-- <field eval="'()'" name="args"/> -->
+		</record>
+	</data>
+</odoo>
